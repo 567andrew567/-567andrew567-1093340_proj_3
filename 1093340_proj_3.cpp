@@ -93,7 +93,6 @@ void read_code(string path) {
 void do_code() {
     int cycle = 1;
     int inst_num = code.size();
-    int inst_finished = 0;
     int inst_pointer = 0;
     bool done = false;
     int add_sub_inst_num = 0;

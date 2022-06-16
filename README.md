@@ -9,8 +9,11 @@
 g++ -g 1093340_proj_3.cpp -o 1093340_proj_3
 ### 執行
 
-###執行結果
+1093340_proj_3 測資路徑\
+example:1093340_proj_3 test_data/test.txt
 
+### 執行結果
+以test.txt為例
 ```
 ADDI R1 R0 2
 ADDI R2 R0 4
@@ -18,7 +21,8 @@ MUL R4 R1 R2
 SUB R3 R2 R1
 DIV R5 R3 R1
 MUL R3 R4 R1
-cycle 1
+----------------------------------------------------
+cycle: 1
 RF:
 R0: 0
 R1: 0
@@ -45,18 +49,18 @@ R9: -
 
 RS:
 RS1: + 0 2
-RS2: empty
-RS3: empty
+RS2: -
+RS3: -
 
-buffer: empty
+buffer: -
 
-RS4: empty
-RS5: empty
+RS4: -
+RS5: -
 
-buffer: empty
+buffer: -
 
 -----------------------------------------------------
-cycle 2
+cycle: 2
 RF:
 R0: 0
 R1: 0
@@ -84,17 +88,17 @@ R9: -
 RS:
 RS1: + 0 2
 RS2: + 0 4
-RS3: empty
+RS3: -
 
 buffer: RS1 0 + 2
 
-RS4: empty
-RS5: empty
+RS4: -
+RS5: -
 
-buffer: empty
+buffer: -
 
 -----------------------------------------------------
-cycle 3
+cycle: 3
 RF:
 R0: 0
 R1: 2
@@ -120,19 +124,19 @@ R8: -
 R9: -
 
 RS:
-RS1: empty
+RS1: -
 RS2: + 0 4
-RS3: empty
+RS3: -
 
 buffer: RS2 0 + 4
 
 RS4: * 2 RS2
-RS5: empty
+RS5: -
 
-buffer: empty
+buffer: -
 
 -----------------------------------------------------
-cycle 4
+cycle: 4
 RF:
 R0: 0
 R1: 2
@@ -159,18 +163,18 @@ R9: -
 
 RS:
 RS1: - 4 2
-RS2: empty
-RS3: empty
+RS2: -
+RS3: -
 
-buffer: empty
+buffer: -
 
 RS4: * 2 4
-RS5: empty
+RS5: -
 
 buffer: RS4 2 * 4
 
 -----------------------------------------------------
-cycle 5
+cycle: 5
 RF:
 R0: 0
 R1: 2
@@ -197,8 +201,8 @@ R9: -
 
 RS:
 RS1: - 4 2
-RS2: empty
-RS3: empty
+RS2: -
+RS3: -
 
 buffer: RS1 4 - 2
 
@@ -208,7 +212,7 @@ RS5: / RS1 2
 buffer: RS4 2 * 4
 
 -----------------------------------------------------
-cycle 7
+cycle: 7
 RF:
 R0: 0
 R1: 2
@@ -234,11 +238,11 @@ R8: -
 R9: -
 
 RS:
-RS1: empty
-RS2: empty
-RS3: empty
+RS1: -
+RS2: -
+RS3: -
 
-buffer: empty
+buffer: -
 
 RS4: * 2 4
 RS5: / 2 2
@@ -246,7 +250,7 @@ RS5: / 2 2
 buffer: RS4 2 * 4
 
 -----------------------------------------------------
-cycle 14
+cycle: 14
 RF:
 R0: 0
 R1: 2
@@ -272,11 +276,11 @@ R8: -
 R9: -
 
 RS:
-RS1: empty
-RS2: empty
-RS3: empty
+RS1: -
+RS2: -
+RS3: -
 
-buffer: empty
+buffer: -
 
 RS4: * 8 2
 RS5: / 2 2
@@ -284,7 +288,7 @@ RS5: / 2 2
 buffer: RS5 2 / 2
 
 -----------------------------------------------------
-cycle 34
+cycle: 34
 RF:
 R0: 0
 R1: 2
@@ -310,19 +314,19 @@ R8: -
 R9: -
 
 RS:
-RS1: empty
-RS2: empty
-RS3: empty
+RS1: -
+RS2: -
+RS3: -
 
-buffer: empty
+buffer: -
 
 RS4: * 8 2
-RS5: empty
+RS5: -
 
 buffer: RS4 8 * 2
 
 -----------------------------------------------------
-cycle 44
+cycle: 44
 RF:
 R0: 0
 R1: 2
@@ -348,16 +352,19 @@ R8: -
 R9: -
 
 RS:
-RS1: empty
-RS2: empty
-RS3: empty
+RS1: -
+RS2: -
+RS3: -
 
-buffer: empty
+buffer: -
 
-RS4: empty
-RS5: empty
+RS4: -
+RS5: -
 
-buffer: empty
+buffer: -
 
 -----------------------------------------------------
 ```
+輸出以虛線分割，第一格為從txt讀入的instruction，接著每一格皆為有變化的cycle的情況，RF為register file，數值為register內存的值，
+RAT為register allocation table，數值為對應到的RS的編號，若無對應到的RS則為 **-**，
+RS前3個為add/addi/sub的暫存，後兩個為mul/div的暫存，第一個buffer為執行前3個rs的alu,第二個則為執行後兩個rs的alu。
